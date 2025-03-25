@@ -7,7 +7,7 @@ int main(){
     //derived - array , function, pointer, reference
 
     //int x = 10;
-    long x =  19223;
+    // long x =  19223;
     long long y = 192239398;
 
     //Strings 
@@ -17,7 +17,12 @@ int main(){
     getline(cin , s1);//picks up till the line breaks.
 
     //char ch ='a';
-    bool  x = true;
+    bool  x = true;//nonempty gives output as the 1
+    //empty gives the error
+    bool c = 5;//1
+    //c = '';//not allowed
+    // bool x = false;//0 and x=0 gives 0
+    
 
 
     
