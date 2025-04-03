@@ -1,0 +1,120 @@
+/*>>>>>>>>>> ACCESS MODIFIERS IN CPP >>>>>>>>>>>>>>
+Access modifiers in C++ control the visibility and accessibility of class members (variables, methods, nested classes). 
+ 1.Public
+class Example {
+public:
+    int publicVariable;
+    void publicMethod() {}
+};
+Characteristics:
+        Accessible from anywhere in your program
+        No restrictions on access
+        Can be accessed by:
+            class members
+            Derived classes
+            Objects of the class
+            External functions/classes
+
+
+    2. Private
+            class Example {
+            private:
+                int privateVariable;
+                void privateMethod() {}
+            };
+            Characteristics:
+            Accessible only within the class where they are declared
+
+            Cannot be accessed by:
+            Derived classes
+            Objects of the class
+            External functions/classes
+
+            *** Enforces encapsulation and information hiding
+            ****Default access level for class members if no modifier is specified
+
+3. Protected
+                class Example {
+                protected:
+                    int protectedVariable;
+                    void protectedMethod() {}
+                };
+                Characteristics:
+                Accessible within:
+                The class where they are declared
+               **** Classes derived from that class
+
+
+                Cannot be accessed by:
+                Objects of the class
+                External functions/classes
+
+                Provides a middle ground between public and private
+
+
+                >>>>>>> Inheritance >>>>>>>
+                class Base {
+                    public:
+                        int publicVar;
+                    protected:
+                        int protectedVar;
+                    private:
+                        int privateVar;
+                    };
+
+                class DerivedPublic : public Base {
+                    // publicVar remains public
+                    // protectedVar remains protected
+                    // privateVar is not accessible
+                };
+
+                class DerivedProtected : protected Base {
+                    // publicVar becomes protected
+                    // protectedVar remains protected
+                    // privateVar is not accessible
+                };
+
+                class DerivedPrivate : private Base {
+                    // publicVar becomes private
+                    // protectedVar becomes private
+                    // privateVar is not accessible
+                };
+
+                struct: Members are public by default
+                class: Members are private by default
+
+
+              1.Keep data members private or protected to maintain encapsulation
+              2.Provide public methods (getters/setters) to access private data when needed
+              3.Use protected for members that should be accessible to derived classes
+              4.Use friend declarations sparingly to avoid breaking encapsulation
+              5.Make class interfaces public and implementations private
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
