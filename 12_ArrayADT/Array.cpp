@@ -198,19 +198,120 @@ void Array::RightRotate(int k) {
 }
 
 void Array::Merge(Array B) {
-    cout << "Merge function - To be implemented" << endl;
+     int* C = new int[length + B.length];
+    int i = 0, j = 0, k = 0;
+    
+    while (i < length && j < B.length) {
+        if (A[i] < B.A[j]) {
+            C[k++] = A[i++];
+        } else if (A[i] > B.A[j]) {
+            C[k++] = B.A[j++]; //Accessing private variable A of class B 
+        } else {
+            C[k++] = A[i++];
+            j++;
+        }
+    }
+    
+    while (i < length) {
+        C[k++] = A[i++];
+    }
+    
+    while (j < B.length) {
+        C[k++] = B.A[j++];
+    }
+    
+    cout << "Merged Array: ";
+    for (int x = 0; x < k; x++) {
+        cout << C[x] << " ";
+    }
+    cout << endl;
+    
+    delete[] C;
+    
 }
 
 void Array::Union(Array B) {
-    cout << "Union function - To be implemented" << endl;
+   int* C = new int[length + B.length];
+    int i = 0, j = 0, k = 0;
+    
+    while (i < length && j < B.length) {
+        if (A[i] < B.A[j]) {
+            C[k++] = A[i++];
+        } else if (A[i] > B.A[j]) {
+            C[k++] = B.A[j++];
+        } else {
+            C[k++] = A[i++];
+            j++;
+        }
+    }
+    
+    while (i < length) {
+        C[k++] = A[i++];
+    }
+    
+    while (j < B.length) {
+        C[k++] = B.A[j++];
+    }
+    
+    cout << "Union Array: ";
+    for (int x = 0; x < k; x++) {
+        cout << C[x] << " ";
+    }
+    cout << endl;
+    
+    delete[] C;
 }
 
 void Array::Intersection(Array B) {
-    cout << "Intersection function - To be implemented" << endl;
+   int* C = new int[(length < B.length) ? length : B.length];
+    int i = 0, j = 0, k = 0;
+    
+    while (i < length && j < B.length) {
+        if (A[i] < B.A[j]) {
+            i++;
+        } else if (A[i] > B.A[j]) {
+            j++;
+        } else {
+            C[k++] = A[i++];
+            j++;
+        }
+    }
+    
+    cout << "Intersection Array: ";
+    for (int x = 0; x < k; x++) {
+        cout << C[x] << " ";
+    }
+    cout << endl;
+    
+    delete[] C;
 }
 
 void Array::Difference(Array B) {
-    cout << "Difference function - To be implemented" << endl;
+    int* C = new int[length];
+    int i = 0, j = 0, k = 0;
+    
+    while (i < length && j < B.length) {
+        if (A[i] < B.A[j]) {
+            C[k++] = A[i++];
+        } else if (A[i] > B.A[j]) {
+            j++;
+        } else {
+            i++;
+            j++;
+        }
+    }
+    
+    while (i < length) {
+        C[k++] = A[i++];
+    }
+    
+    cout << "Difference Array (A - B): ";
+    for (int x = 0; x < k; x++) {
+        cout << C[x] << " ";
+    }
+    cout << endl;
+    
+    delete[] C;
 }
 
 // Menu function
@@ -346,25 +447,81 @@ int main() {
                 arr.RightRotate(k);
                 break;
                 
-            case 14:
-                arr.Merge(Array());
+            {
+                    int size2;
+                    cout << "Enter size of second array: ";
+                    cin >> size2;
+                    Array arr2(size2);
+                    int n;
+                    cout << "Enter number of elements in second array: ";
+                    cin >> n;
+                    cout << "Enter elements of second array: ";
+                    for (int i = 0; i < n; i++) {
+                        int elem;
+                        cin >> elem;
+                        arr2.Append(elem);
+                    }
+                    arr.Merge(arr2);
+                }
                 break;
                 
             case 15:
-                arr.Union(Array());
+                {
+                    int size2;
+                    cout << "Enter size of second array: ";
+                    cin >> size2;
+                    Array arr2(size2);
+                    int n;
+                    cout << "Enter number of elements in second array: ";
+                    cin >> n;
+                    cout << "Enter elements of second array: ";
+                    for (int i = 0; i < n; i++) {
+                        int elem;
+                        cin >> elem;
+                        arr2.Append(elem);
+                    }
+                    arr.Union(arr2);
+                }
                 break;
                 
             case 16:
-                arr.Intersection(Array());
+                {
+                    int size2;
+                    cout << "Enter size of second array: ";
+                    cin >> size2;
+                    Array arr2(size2);
+                    int n;
+                    cout << "Enter number of elements in second array: ";
+                    cin >> n;
+                    cout << "Enter elements of second array: ";
+                    for (int i = 0; i < n; i++) {
+                        int elem;
+                        cin >> elem;
+                        arr2.Append(elem);
+                    }
+                    arr.Intersection(arr2);
+                }
                 break;
                 
             case 17:
-                arr.Difference(Array());
+                {
+                    int size2;
+                    cout << "Enter size of second array: ";
+                    cin >> size2;
+                    Array arr2(size2);
+                    int n;
+                    cout << "Enter number of elements in second array: ";
+                    cin >> n;
+                    cout << "Enter elements of second array: ";
+                    for (int i = 0; i < n; i++) {
+                        int elem;
+                        cin >> elem;
+                        arr2.Append(elem);
+                    }
+                    arr.Difference(arr2);
+                }
                 break;
                 
-            case 18:
-                cout << "Exiting program. Goodbye!" << endl;
-                return 0;
                 
             default:
                 cout << "Invalid choice! Please try again." << endl;
