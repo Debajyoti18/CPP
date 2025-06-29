@@ -88,7 +88,29 @@ void Palindrome(char str[]) {
         cout << "The string is a Palindrome." << endl;
     else
         cout << "The string is not a Palindrome." << endl;
+} 
+    int findDuplicates(char str[]) {
+     int hash[26] = {0};
+     int i = 0, duplicates = 0;
+
+    while (str[i] != '\0') {
+        char ch = tolower(str[i]);
+        if (ch >= 'a' && ch <= 'z') {
+            hash[ch - 'a']++;
+        }
+        i++;
+    }
+
+    for (int j = 0; j < 26; j++) {
+        if (hash[j] > 1) {
+            duplicates++;
+            cout << "Character '" << char(j + 'a') << "' appears " << hash[j] << " times." << endl;
+        }
+    }
+
+    return duplicates;
 }
+
 
 int main() {
     int choice;
@@ -109,7 +131,7 @@ int main() {
         cout << "4: Reversing String\n";
         cout << "5: Comparing String\n";
         cout << "6: Check Palindrome\n";
-        
+        cout << "7: Check Number of Duplicate Alphabets in Your String\n";
         cout << "8: Exit\n";
         cout << "Enter Your Choice: ";
         cin >> choice;
@@ -152,6 +174,9 @@ int main() {
 
             case 6:
                 Palindrome(str);
+                break;
+            case 7:
+                findDuplicates(str);
                 break;
 
             case 8:
