@@ -51,6 +51,26 @@ using namespace std;
         }
 
     }
+    void Compare(char str[], char st[]) {
+    int i = 0;
+    bool areEqual = true;
+
+    while (str[i] != '\0' && st[i] != '\0') {
+        if (str[i] != st[i]) {
+            areEqual = false;
+            break;
+        }
+        i++;
+    }
+    if (str[i] != '\0' || st[i] != '\0') {
+        areEqual = false;
+    }
+
+    if (areEqual)
+        cout << "Strings are equal." << endl;
+    else
+        cout << "Strings are not equal." << endl;
+}
     
 int main() {
     int choice;
@@ -68,7 +88,7 @@ int main() {
         cout << "2: Find Number of Vowels and Consonants of Your String\n";
         cout << "3: Validate String\n" << endl;
         cout << "4: Reversing String\n";
-
+        cout << "4: Comparing String\n";
 
         cout << "8: Exit\n";
         cout << "Enter Your Choice: ";
@@ -98,6 +118,12 @@ int main() {
             reverse(str);
             cout << "Reversed String is: " << str << endl;
             break;
+        case 5:
+             char st[100];
+             cout << "Enter the string you want to compare String: ";
+             cin.getline(st,100);
+             Compare(str,st);
+             break;
 
         case 8:
             cout << "Exiting Program." << endl;
