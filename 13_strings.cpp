@@ -40,6 +40,17 @@ using namespace std;
             }
             return false;
     }
+    void reverse(char str[]){
+        int i=str[0],j=findLength(str)-1;char temp;
+        while(i<=j){
+            temp = str[i];
+            str[i]=str[j];
+            str[j]=temp;
+            i++;
+            j--;
+        }
+
+    }
     
 int main() {
     int choice;
@@ -55,7 +66,8 @@ int main() {
         cout << "0: Find Length of Your String\n";
         cout << "1: Toggle Case of Your String\n";
         cout << "2: Find Number of Vowels and Consonants of Your String\n";
-        cout << "3: Validate String\n";
+        cout << "3: Validate String\n" << endl;
+        cout << "4: Reversing String\n";
 
 
         cout << "8: Exit\n";
@@ -81,6 +93,10 @@ int main() {
                 cout << "Your String is Valid "<< endl;
             }
             cout << "Your String is not Valid "<< endl;
+            break;
+        case 4:
+            reverse(str);
+            cout << "Reversed String is: " << str << endl;
             break;
 
         case 8:
