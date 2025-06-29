@@ -31,6 +31,15 @@ using namespace std;
     cout << "Vowels: " << vowels << endl;
     cout << "Consonants: " << consonants << endl;
     }
+    bool validate(char str[]){
+        for(int i = 0; str[i] != '\0'; i++) {
+            if(!(str[i]>=65 && str[i]<=122) && !(str[i]>=65 && str[i]<=90 )&& !(str[i]>=48 && str[i]<=57)){
+                return true;
+            }
+            
+            }
+            return false;
+    }
     
 int main() {
     int choice;
@@ -46,6 +55,7 @@ int main() {
         cout << "0: Find Length of Your String\n";
         cout << "1: Toggle Case of Your String\n";
         cout << "2: Find Number of Vowels and Consonants of Your String\n";
+        cout << "3: Validate String\n";
 
 
         cout << "8: Exit\n";
@@ -65,6 +75,12 @@ int main() {
         }
         case 2:
             findVowelsandConsonants(str);
+            break;
+        case 3:
+            if(validate(str)){
+                cout << "Your String is Valid "<< endl;
+            }
+            cout << "Your String is not Valid "<< endl;
             break;
 
         case 8:
