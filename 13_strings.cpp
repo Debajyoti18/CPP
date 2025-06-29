@@ -1,60 +1,62 @@
 #include <iostream>
+#include <cctype>
 using namespace std;
-    int findLength(char str[]){
-        int i ;
-            for(i = 0; str[i] != '\0'; i++) {
-            }
-            return i;
-    }
-    void ToggleCase(char str[]){
-        for (int i = 0; str[i] != '\0'; i++) {
-                if (str[i] >= 'a' && str[i] <= 'z') {
-                    str[i] -= 32;  // Convert to uppercase
-                } else if (str[i] >= 'A' && str[i] <= 'Z') {
-                    str[i] += 32;  // Convert to lowercase
-                }
-            }
-    }
-    void findVowelsandConsonants(char str[]){
-        int vowels = 0, consonants = 0;
 
+int findLength(char str[]) {
+    int i;
+    for (i = 0; str[i] != '\0'; i++) {}
+    return i;
+}
+
+void ToggleCase(char str[]) {
     for (int i = 0; str[i] != '\0'; i++) {
-        char ch = tolower(str[i]);  
-        if (isalpha(ch)) {  
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] -= 32;
+        } else if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] += 32;
+        }
+    }
+}
+
+void findVowelsandConsonants(char str[]) {
+    int vowels = 0, consonants = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        if (isalpha(ch)) {
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
                 vowels++;
             else
                 consonants++;
         }
     }
-
     cout << "Vowels: " << vowels << endl;
     cout << "Consonants: " << consonants << endl;
-    }
-    bool validate(char str[]){
-        for(int i = 0; str[i] != '\0'; i++) {
-            if(!(str[i]>=65 && str[i]<=122) && !(str[i]>=65 && str[i]<=90 )&& !(str[i]>=48 && str[i]<=57)){
-                return true;
-            }
-            
-            }
-            return false;
-    }
-    void reverse(char str[]){
-        int i=str[0],j=findLength(str)-1;char temp;
-        while(i<=j){
-            temp = str[i];
-            str[i]=str[j];
-            str[j]=temp;
-            i++;
-            j--;
-        }
+}
 
+bool validate(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!(isalnum(str[i]))) {
+            return false;
+        }
     }
-    void Compare(char str[], char st[]) {
+    return true;
+}
+
+void reverse(char str[]) {
+    int i = 0, j = findLength(str) - 1;
+    char temp;
+    while (i <= j) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++;
+        j--;
+    }
+}
+
+void Compare(char str[], char st[]) {
     int i = 0;
     bool areEqual = true;
-
     while (str[i] != '\0' && st[i] != '\0') {
         if (str[i] != st[i]) {
             areEqual = false;
@@ -65,72 +67,99 @@ using namespace std;
     if (str[i] != '\0' || st[i] != '\0') {
         areEqual = false;
     }
-
     if (areEqual)
         cout << "Strings are equal." << endl;
     else
         cout << "Strings are not equal." << endl;
 }
-    
+
+void Palindrome(char str[]) {
+    int i = 0, j = findLength(str) - 1;
+    bool isPalin = true;
+    while (i < j) {
+        if (str[i] != str[j]) {
+            isPalin = false;
+            break;
+        }
+        i++;
+        j--;
+    }
+    if (isPalin)
+        cout << "The string is a Palindrome." << endl;
+    else
+        cout << "The string is not a Palindrome." << endl;
+}
+
 int main() {
     int choice;
-    char str[100]; // Increased size for safety
+    char str[100];
 
     do {
-        cout << "-------------------------------------------------------------------" << endl; 
+        cout << "-------------------------------------------------------------------" << endl;
         cout << "----------------------- MENU DRIVEN PROGRAM -----------------------" << endl;
         cout << "Enter Your String: ";
-        cin.getline(str,100);
+        cin.ignore();
+        cin.getline(str, 100);
 
         cout << "\nMenu:\n";
         cout << "0: Find Length of Your String\n";
         cout << "1: Toggle Case of Your String\n";
         cout << "2: Find Number of Vowels and Consonants of Your String\n";
-        cout << "3: Validate String\n" << endl;
+        cout << "3: Validate String\n";
         cout << "4: Reversing String\n";
-        cout << "4: Comparing String\n";
-
+        cout << "5: Comparing String\n";
+        cout << "6: Check Palindrome\n";
+        
         cout << "8: Exit\n";
         cout << "Enter Your Choice: ";
         cin >> choice;
 
         switch (choice) {
-        case 0: {
-            cout << "Length of your string is: " << findLength(str) << endl;
-            break;
-        }
+            case 0:
+                cout << "Length of your string is: " << findLength(str) << endl;
+                break;
 
-        case 1: {
-            ToggleCase(str);
-            cout << "Toggled String is: " << str << endl;
-            break;
-        }
-        case 2:
-            findVowelsandConsonants(str);
-            break;
-        case 3:
-            if(validate(str)){
-                cout << "Your String is Valid "<< endl;
+            case 1:
+                ToggleCase(str);
+                cout << "Toggled String is: " << str << endl;
+                break;
+
+            case 2:
+                findVowelsandConsonants(str);
+                break;
+
+            case 3:
+                if (validate(str)) {
+                    cout << "Your String is Valid" << endl;
+                } else {
+                    cout << "Your String is not Valid" << endl;
+                }
+                break;
+
+            case 4:
+                reverse(str);
+                cout << "Reversed String is: " << str << endl;
+                break;
+
+            case 5: {
+                char st[100];
+                cout << "Enter the string you want to compare: ";
+                cin.ignore();
+                cin.getline(st, 100);
+                Compare(str, st);
+                break;
             }
-            cout << "Your String is not Valid "<< endl;
-            break;
-        case 4:
-            reverse(str);
-            cout << "Reversed String is: " << str << endl;
-            break;
-        case 5:
-             char st[100];
-             cout << "Enter the string you want to compare String: ";
-             cin.getline(st,100);
-             Compare(str,st);
-             break;
 
-        case 8:
-            cout << "Exiting Program." << endl;
-            break;
+            case 6:
+                Palindrome(str);
+                break;
 
-        default:
-            cout << "Invalid Choice. Please try again." << endl;
+            case 8:
+                cout << "Exiting Program." << endl;
+                break;
+
+            default:
+                cout << "Invalid Choice. Please try again." << endl;
         }
 
     } while (choice != 8);
