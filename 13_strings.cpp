@@ -15,6 +15,22 @@ using namespace std;
                 }
             }
     }
+    void findVowelsandConsonants(char str[]){
+        int vowels = 0, consonants = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);  
+        if (isalpha(ch)) {  
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                vowels++;
+            else
+                consonants++;
+        }
+    }
+
+    cout << "Vowels: " << vowels << endl;
+    cout << "Consonants: " << consonants << endl;
+    }
     
 int main() {
     int choice;
@@ -24,11 +40,14 @@ int main() {
         cout << "-------------------------------------------------------------------" << endl; 
         cout << "----------------------- MENU DRIVEN PROGRAM -----------------------" << endl;
         cout << "Enter Your String: ";
-        cin >> str;
+        cin.getline(str,100);
 
         cout << "\nMenu:\n";
         cout << "0: Find Length of Your String\n";
         cout << "1: Toggle Case of Your String\n";
+        cout << "2: Find Number of Vowels and Consonants of Your String\n";
+
+
         cout << "8: Exit\n";
         cout << "Enter Your Choice: ";
         cin >> choice;
@@ -44,8 +63,9 @@ int main() {
             cout << "Toggled String is: " << str << endl;
             break;
         }
-        case 3:
-            
+        case 2:
+            findVowelsandConsonants(str);
+            break;
 
         case 8:
             cout << "Exiting Program." << endl;
