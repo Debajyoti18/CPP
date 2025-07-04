@@ -67,7 +67,7 @@ int main() {
             case 2:
                 cout << "Enter data to insert at beginning: ";
                 cin >> data;
-                // list.insertAtBeginning(data);
+                 list.insertAtBeginning(data);
                 cout << "Implementation needed for insertAtBeginning()" << endl;
                 break;
                 
@@ -75,7 +75,7 @@ int main() {
                 // Insert at End
                 cout << "Enter data to insert at end: ";
                 cin >> data;
-                // list.insertAtEnd(data);
+                list.insertAtEnd(data);
                 cout << "Implementation needed for insertAtEnd()" << endl;
                 break;
                 
@@ -273,4 +273,10 @@ void LinkedList::displayList(){
     }
     
 }
+void LinkedList:: insertAtBeginning(int x){
+   Node* newnode=new Node(x);
+    newnode->next = head;
+    head=newnode; 
+}
+
 
