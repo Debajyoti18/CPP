@@ -278,5 +278,18 @@ void LinkedList:: insertAtBeginning(int x){
     newnode->next = head;
     head=newnode; 
 }
+void LinkedList::insertAtEnd(int data){
+    Node* newnode=new Node(data);
+    Node* temp=head;
+    if(head ==nullptr){
+        head=newnode;
+        return;
+    }
+    while(temp->next !=nullptr){
+        temp = temp->next;
+    }
+    temp->next=newnode;
+    newnode->=nullptr;
+}
 
 
