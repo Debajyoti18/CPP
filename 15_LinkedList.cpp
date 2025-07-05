@@ -85,7 +85,7 @@ int main() {
                 cin >> data;
                 cout << "Enter position (0-based indexing): ";
                 cin >> position;
-                // list.insertAtPosition(data, position);
+               list.insertAtPosition(data, position);
                 cout << "Implementation needed for insertAtPosition()" << endl;
                 break;
                 
@@ -290,6 +290,22 @@ void LinkedList::insertAtEnd(int data){
     }
     temp->next=newnode;
     newnode->=nullptr;
+}
+void LinkedList::insertAtPosition(int data,int pos){
+    if(pos < 0 || pos > Length(head)){
+        return ;
+    }
+    Node* t=new Node(data);
+     t.next=nullptr;
+    if(pos == 0){
+        t.next = head;
+        head=t;
+    }else{
+        Node* p=head;
+        for(int i=0;i<pos-1;i++){p=p->next;}
+        t->next = p->next;
+        p->next=t;
+    }
 }
 
 
