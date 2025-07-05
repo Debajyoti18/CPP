@@ -105,7 +105,7 @@ int main() {
                 // Delete from Position
                 cout << "Enter position to delete (0-based): ";
                 cin >> position;
-                // list.deleteAtPosition(position);
+                list.deleteAtPosition(position);
                 cout << "Implementation needed for deleteAtPosition()" << endl;
                 break;
                 
@@ -289,7 +289,7 @@ void LinkedList::insertAtEnd(int data){
         temp = temp->next;
     }
     temp->next=newnode;
-    newnode->=nullptr;
+    newnode->next=nullptr;
 }
 void LinkedList::insertAtPosition(int data,int pos){
     if(pos < 0 || pos > this->getLength()){
@@ -343,5 +343,27 @@ void LinkedList::deleteAtEnd(){
     delete p->next;
     p->next = nullptr;
 
+}
+void LinkedList::deleteAtPosition(int pos){
+   if(pos < 0 || pos >= this->getLength()){
+        return ;
+    }
+    if(pos==0){
+        this->deleteAtBeginning();
+    }
+    Node* p=head;Node* q=nullptr;
+    for (int i = 0; i < pos-1 && p!=nullptr ; i++)
+    {
+        q=p;
+        p=p->next;
+    }
+    if(p!=nullptr && q!=nullptr){ // its not gurentee that is p is not null then q must not null.so we check for q 
+        //also.break condition is when pos < 0;i.e p is head and q = null .so we add for check q also.
+
+        q->next=p->next;
+        delete p;
+    }
+
+    
 }
 
