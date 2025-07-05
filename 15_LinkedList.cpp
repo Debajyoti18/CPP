@@ -97,7 +97,7 @@ int main() {
                 
             case 6:
                 // Delete from End
-                // list.deleteAtEnd();
+                 list.deleteAtEnd();
                 cout << "Implementation needed for deleteAtEnd()" << endl;
                 break;
                 
@@ -321,6 +321,27 @@ void LinkedList::deleteAtBeginning(){
     Node* p=head;
     head =head->next;
     delete p;  
+
+}
+void LinkedList::deleteAtEnd(){
+    
+    if (head == nullptr) {
+        return; // List is empty
+    }
+
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node* p = head;
+    while (p->next->next != nullptr) {
+        p = p->next;
+    }
+
+    delete p->next;
+    p->next = nullptr;
 
 }
 
