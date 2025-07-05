@@ -91,7 +91,7 @@ int main() {
                 
             case 5:
                 // Delete from Beginning
-                // list.deleteAtBeginning();
+                 list.deleteAtBeginning();
                 cout << "Implementation needed for deleteAtBeginning()" << endl;
                 break;
                 
@@ -136,7 +136,7 @@ int main() {
                 
             case 11:
                 // Get Length
-                // cout << "Length of list: " << list.getLength() << endl;
+                 cout << "Length of list: " << list.getLength() << endl;
                 cout << "Implementation needed for getLength()" << endl;
                 break;
                 
@@ -292,14 +292,13 @@ void LinkedList::insertAtEnd(int data){
     newnode->=nullptr;
 }
 void LinkedList::insertAtPosition(int data,int pos){
-    if(pos < 0 || pos > Length(head)){
+    if(pos < 0 || pos > this->getLength()){
         return ;
     }
     Node* t=new Node(data);
      t.next=nullptr;
     if(pos == 0){
-        t.next = head;
-        head=t;
+        this->insertAtBeginning(data);
     }else{
         Node* p=head;
         for(int i=0;i<pos-1;i++){p=p->next;}
@@ -307,5 +306,21 @@ void LinkedList::insertAtPosition(int data,int pos){
         p->next=t;
     }
 }
+int LinkedList::getLength(){
+    Node* h=head;
+    int x;
+    for(x=0;h !=nullptr;h++){
 
+    }
+    return x;
+}
+void LinkedList::deleteAtBeginning(){
+    if(head == nullptr){
+        return;
+    }
+    Node* p=head;
+    head =head->next;
+    delete p;  
+
+}
 
