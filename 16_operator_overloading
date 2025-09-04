@@ -1,0 +1,42 @@
+/*It is also helpful in operator overloading when istream or ostream objects (cin & cout) are to be overloaded or passed as arguments as they have different class.”
+      Here’s what it means, based on context from C++ programming principles:
+      cin and cout are instances of the classes istream and ostream, respectively.
+      These classes are not user-defined, and you cannot modify them directly to add new member functions.
+      When you want to overload the << or >> operators to work with your own class (e.g., printing a Complex object), you need to pass ostream or istream objects as arguments to a non-member (usually friend) function.
+Why This Is Helpful
+Operator overloading for << and >> must be done outside the class because the left-hand operand (cout or cin) is not an instance of your class.
+You can’t make cout << obj; work by defining operator<< inside your class, because cout is not your class.
+*/
+#include <iostream>
+using namespace std;
+
+class Distance {
+private:
+    int feet;
+    float inches;
+
+public:
+    Distance() : feet(0), inches(0.0) {}
+
+    // Friend function to overload <<
+    friend ostream& operator<<(ostream& out, const Distance& d) {
+        out << d.feet << " feet " << d.inches << " inches";
+        return out;
+    }
+
+    // Friend function to overload >>
+    friend istream& operator>>(istream& in, Distance& d) {
+        cout << "Enter feet: ";
+        in >> d.feet;
+        cout << "Enter inches: ";
+        in >> d.inches;
+        return in;
+    }
+};
+
+int main() {
+    Distance d1;
+    cin >> d1;             // Uses overloaded >> operator
+    cout << d1 << endl;    // Uses overloaded << operator
+    return 0;
+}
