@@ -90,6 +90,25 @@ Characteristics:
               4.Use friend declarations sparingly to avoid breaking encapsulation
               5.Make class interfaces public and implementations private
 
+//multiple Inheritance .a membership label, which means explicitly specifying which base class’s function you want to call using the scope resolution operator (::).
+//DerivedObject.BaseClassName::FunctionName();
+class A {
+public:
+    void func() { cout << "I am in class A" << endl; }
+};
+
+class B {
+public:
+    void func() { cout << "I am in class B" << endl; }
+};
+
+class C : public A, public B { };
+
+int main() {
+    C obj;
+    obj.A::func(); // Calls A's version
+    obj.B::func(); // Calls B's version
+}
 
 
 
